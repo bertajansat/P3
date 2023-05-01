@@ -14,16 +14,27 @@ Ejercicios básicos
   `get_pitch`.
 
    * Complete el cálculo de la autocorrelación e inserte a continuación el código correspondiente.
+   
+![image](https://user-images.githubusercontent.com/127047656/235481605-888c5118-2636-4f05-b0fb-cb7cf0343b97.png)
 
    * Inserte una gŕafica donde, en un *subplot*, se vea con claridad la señal temporal de un segmento de
      unos 30 ms de un fonema sonoro y su periodo de pitch; y, en otro *subplot*, se vea con claridad la
 	 autocorrelación de la señal y la posición del primer máximo secundario.
+	 
+Para la generación de las gráficas hemos decidido usar Matlab. Gracias a esto podemos observar con más claridad el segundo pico de la autocorrelación, es decir el correspondiente al pitch. 
+![image](https://user-images.githubusercontent.com/127047656/235480453-d2bbc234-a37a-4f22-89fc-994f295c6ad1.png)
+
+Estos resultados los hemos logrado a través del siguiente código: 
+![image](https://user-images.githubusercontent.com/127047656/235481023-2b5fe2f5-69e1-4522-9dd2-f3aacd411314.png)
+Como se puede observar, hemos tenido que coger a partir de la mitad de las muestras del resultado de xcorr(audio) ya que esta función nos daba los coeficientes de la autocorrelación entre -N+1 y N-1 y el máximo está ubicado en N. Para observar mejor la correlación tomamos el vector de forma que el máximo principal esté en 0. 
 
 	 NOTA: es más que probable que tenga que usar Python, Octave/MATLAB u otro programa semejante para
 	 hacerlo. Se valorará la utilización de la biblioteca matplotlib de Python.
 
    * Determine el mejor candidato para el periodo de pitch localizando el primer máximo secundario de la
      autocorrelación. Inserte a continuación el código correspondiente.
+ ![image](https://user-images.githubusercontent.com/127047656/235481972-ed18bddc-7a2c-492c-b7a3-34ceb4fbf563.png)
+
 
    * Implemente la regla de decisión sonoro o sordo e inserte el código correspondiente.
 
