@@ -55,6 +55,12 @@ De momento hemos puesto unos valores de: u_pot = -48.7 , u_r1 = 0.93 y u_rmax = 
 	    principales candidatos para determinar la sonoridad de la voz: el nivel de potencia de la señal
 		(r[0]), la autocorrelación normalizada de uno (r1norm = r[1] / r[0]) y el valor de la
 		autocorrelación en su máximo secundario (rmaxnorm = r[lag] / r[0]).
+		
+Conseguimos separar los distintos valores a través del comando cut y redirijiendo cada columna a un fichero de salida distinto. 		
+		
+![image](https://user-images.githubusercontent.com/127047656/235783905-5471c16d-73e8-414e-84e4-19b736ad13bf.png)
+
+En estos gráficos está representado de arriba a abajo: La señal de voz, el pitch calculado por el sistema, la potencia, r[1] / r[0] y finalmente r[lag] / r[0]. Tal y como se puede observar, en los sonidos sonoras, tanto la autocorrelación normalizada de 1 como la del pitch toman valores más altos que en el caso de los sonidos sordos. A partir de estos valores podemos variar nuestros umbrales y darles un valor más preciso. 
 
 		Puede considerar, también, la conveniencia de usar la tasa de cruces por cero.
 
