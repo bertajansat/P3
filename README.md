@@ -86,6 +86,10 @@ Para verlo de forma más cómoda hemos cambiado alguna propiedad de la gráfica 
   * Optimice los parámetros de su sistema de estimación de pitch e inserte una tabla con las tasas de error
     y el *score* TOTAL proporcionados por `pitch_evaluate` en la evaluación de la base de datos 
 	`pitch_db/train`..
+	
+![image](https://user-images.githubusercontent.com/127047656/235785814-ef50abf1-3605-4529-8a06-08c5096f0731.png)
+
+Como podemos observar obtenemos una total score de 90.92%. Esto lo hemos conseguido variando los parámetros y dejándolos de la forma siguiente: u_pot = -46 dB, u_r1 = 0.94 y u_rmax = 0.39. Además, también hemos implementado center clipping como método de preprocesado y un filtro de mediana de 3 elementos como método de postprocesado.   
 
 Ejercicios de ampliación
 ------------------------
