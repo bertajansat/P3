@@ -64,6 +64,15 @@ De momento hemos puesto unos valores de: u_pot = -48.7 , u_r1 = 0.93 y u_rmax = 
       - Use el estimador de pitch implementado en el programa `wavesurfer` en una señal de prueba y compare
 	    su resultado con el obtenido por la mejor versión de su propio sistema.  Inserte una gráfica
 		ilustrativa del resultado de ambos estimadores.
+		
+![image](https://user-images.githubusercontent.com/127047656/235756128-cd8a64a6-9885-47d8-bbd1-fb408d4fe152.png)
+
+En la segunda gráfica observamos el pitch calculado por nuestro sistema y en la última el calculado por Wavesurfer con la opción "Pitch Contour". A todas aquellas tramas sordas se les asigna un pitch de 0 (ya que no tienen). Tal y como se puede ver, nuestro sistema calcula de forma muy precisa el pitch del hablante. 
+
+![image](https://user-images.githubusercontent.com/127047656/235757664-1bf109ea-6c82-4cbb-8303-25cb4de42696.png)
+
+Para verlo de forma más cómoda hemos cambiado alguna propiedad de la gráfica haciendo que solo se muestren los valores que sean superiores a 0 y que estés la gráfica en el formato 'dots'. Hay pequeñas discrepancias pero podemos ver un sistema muy robusto. 
+
      
 		Aunque puede usar el propio Wavesurfer para obtener la representación, se valorará
 	 	el uso de alternativas de mayor calidad (particularmente Python).
