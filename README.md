@@ -77,7 +77,7 @@ En la segunda gráfica observamos el pitch calculado por nuestro sistema y en la
 
 ![image](https://user-images.githubusercontent.com/127047656/235757664-1bf109ea-6c82-4cbb-8303-25cb4de42696.png)
 
-Para verlo de forma más cómoda hemos cambiado alguna propiedad de la gráfica haciendo que solo se muestren los valores que sean superiores a 0 y que estés la gráfica en el formato 'dots'. Hay pequeñas discrepancias pero podemos ver un sistema muy robusto. 
+Para verlo de forma más cómoda hemos cambiado alguna propiedad de la gráfica haciendo que solo se muestren los valores que sean superiores a 0 y que esté la gráfica en el formato 'dots'. Hay pequeñas discrepancias pero podemos ver un sistema muy robusto. 
 
      
 		Aunque puede usar el propio Wavesurfer para obtener la representación, se valorará
@@ -86,6 +86,10 @@ Para verlo de forma más cómoda hemos cambiado alguna propiedad de la gráfica 
   * Optimice los parámetros de su sistema de estimación de pitch e inserte una tabla con las tasas de error
     y el *score* TOTAL proporcionados por `pitch_evaluate` en la evaluación de la base de datos 
 	`pitch_db/train`..
+	
+![image](https://user-images.githubusercontent.com/127047656/236014216-a4d792ee-b8cf-4a19-8285-8736617aa6dc.png)
+
+Para poder llegar a los resultados adjuntados a continuación hemos decidido implementar la decisión de trama sorda o sonora a través de 3 parámetros: Potencia, r[1] / r[0] y finalmente r[lag] / r[0]. Nos hemos decantado por la opción en que la potencia sea un requerimiento obligatorio y luego que si se cumplen una de las dos condiciones sobre la autocorrelación ya consideramos la trama sonora. 
 	
 ![image](https://user-images.githubusercontent.com/127047656/235785814-ef50abf1-3605-4529-8a06-08c5096f0731.png)
 
@@ -103,6 +107,10 @@ Ejercicios de ampliación
 
   * Inserte un *pantallazo* en el que se vea el mensaje de ayuda del programa y un ejemplo de utilización
     con los argumentos añadidos.
+   
+![image](https://user-images.githubusercontent.com/127047656/236014982-4dedb4d3-85f1-40df-9709-27274f97a475.png)
+
+Llamamos a la función en el terminal y observamos el mensaje de ayuda donde nos dice como usar nuestro sistema correctamente. 
 
 - Implemente las técnicas que considere oportunas para optimizar las prestaciones del sistema de estimación
   de pitch.
