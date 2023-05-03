@@ -87,7 +87,7 @@ Para verlo de forma más cómoda hemos cambiado alguna propiedad de la gráfica 
     y el *score* TOTAL proporcionados por `pitch_evaluate` en la evaluación de la base de datos 
 	`pitch_db/train`..
 	
-![image](https://user-images.githubusercontent.com/127047656/236014216-a4d792ee-b8cf-4a19-8285-8736617aa6dc.png)
+![image](https://user-images.githubusercontent.com/127047656/236036416-5262e849-6cdb-44ad-9183-f37d73765a5f.png)
 
 Para poder llegar a los resultados adjuntados a continuación hemos decidido implementar la decisión de trama sorda o sonora a través de 3 parámetros: Potencia, r[1] / r[0] y finalmente r[lag] / r[0]. Nos hemos decantado por la opción en que la potencia sea un requerimiento obligatorio y luego que si se cumplen una de las dos condiciones sobre la autocorrelación ya consideramos la trama sonora. 
 	
