@@ -38,7 +38,7 @@ Como se puede observar, hemos tenido que coger a partir de la mitad de las muest
 
 
    * Implemente la regla de decisión sonoro o sordo e inserte el código correspondiente.
-   * 
+   
 ![image](https://user-images.githubusercontent.com/127047656/235486066-33bf8c88-1b58-4057-8ab8-53ceeefcb071.png)
 
 De momento hemos puesto unos valores de: u_pot = -48.7 , u_r1 = 0.93 y u_rmax = 0.45. Estos valores aún no son los definitivos y se irán cambiando durante la realización de la práctica. 
