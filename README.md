@@ -136,6 +136,18 @@ Llamamos a la función en el terminal y observamos el mensaje de ayuda donde nos
   por implementar el filtro de mediana, se valorará el análisis de los resultados obtenidos en función de
   la longitud del filtro.
    
+Como técnica de preprocesado nos hemos decantado por hacer un *center clipping*, primero probamos a usar un umbral y reducir o sumar ese umbral a la señal si su valor absoluto era mayor. Posteriormente probamos a usar un umbral a partir del cual si la señal es menor que este, la tratamos como si la señal fuera 0. Después de hacer ambos, hemos visto que nos da mejores resultados el más básico, es decir un único umbral debajo del cual todo pasa a ser 0. Lo hemos realizado de la siguiente forma:
+ 
+![image](https://user-images.githubusercontent.com/127047656/236621515-0bcfd30c-41ed-4905-a04d-7e9657664f73.png)
+
+También hemos probado la ventana de Hamming en vez de la rectangular pero esta da peores resultados. La implementación ha sido la siguiente:
+
+![image](https://user-images.githubusercontent.com/127047656/236623741-4ee300cf-6312-4b25-99c4-e4b00178bbc9.png)
+
+Finalmente hemos usado un filtro de mediana de 3 elementos para realizar el postprocesado. Esto nos permite eliminar aquellos llamados errores dobles o de mitad. Para implementarlo cojemos una muestra, la anterior y la siguiente y las ordenamos de menor a mayor, de ahí nos quedamos con la del medio. Hacemos esto con todas las muestras de la señal. El pitch debe ser una curba con variaciones muy leves y a través de de este postprocesado corregimos los cambios bruscos que puedan aparecer. Lo hemos implementado de esta forma:
+
+
+
 
 Evaluación *ciega* del estimador
 -------------------------------
