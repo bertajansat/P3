@@ -146,6 +146,7 @@ También hemos probado la ventana de Hamming en vez de la rectangular pero esta 
 
 Finalmente hemos usado un filtro de mediana de 3 elementos para realizar el postprocesado. Esto nos permite eliminar aquellos llamados errores dobles o de mitad. Para implementarlo cojemos una muestra, la anterior y la siguiente y las ordenamos de menor a mayor, de ahí nos quedamos con la del medio. Hacemos esto con todas las muestras de la señal. El pitch debe ser una curba con variaciones muy leves y a través de de este postprocesado corregimos los cambios bruscos que puedan aparecer. Lo hemos implementado de esta forma:
 
+![image](https://user-images.githubusercontent.com/127047656/236642039-38d8a67b-aae9-4d3b-aa78-3ceca7d8ae05.png)
 
 
 
