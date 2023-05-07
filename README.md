@@ -108,7 +108,8 @@ Ejercicios de ampliación
   * Inserte un *pantallazo* en el que se vea el mensaje de ayuda del programa y un ejemplo de utilización
     con los argumentos añadidos.
    
-![image](https://user-images.githubusercontent.com/127047656/236035268-03f1fba4-f573-42a1-ab15-db365b64ef8b.png)
+![image](https://user-images.githubusercontent.com/127047656/236697062-4af72f3a-3960-4676-824f-76456fdbb23b.png)
+
 
 Llamamos a la función en el terminal y observamos el mensaje de ayuda donde nos dice como usar nuestro sistema correctamente. 
 
