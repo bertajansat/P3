@@ -96,7 +96,9 @@ Para poder llegar a los resultados adjuntados a continuación hemos decidido imp
 Como podemos observar obtenemos una total score de 90.92%. Esto lo hemos conseguido variando los parámetros y dejándolos de la forma siguiente: u_pot = -46 dB, u_r1 = 0.94 y u_rmax = 0.39. Además, también hemos implementado center clipping como método de preprocesado y un filtro de mediana de 3 elementos como método de postprocesado.   
 
 Buscando formas de mejorar la puntuación total hemos implementado la función unvoiced de una forma distinta además de añadirle la tasa de cruces por cero. Que para decidir si un tramo es sonoro o sordo hemos creado 4 umbrales (umbral sobre la potencia de la señal, el umbral sobre la autocorrelación normalizada de 1, el umbral sobre la autocorrelacción en el máximo de la autocorrelación y el umbral sobre los cruces por zero).
+
 Entonces, si la potencia de la señal es mayor que su umbral, esto sugiere que el tramo es sonora ya que los sonidos sonoros tienen una energía mayor que los sordos. En el caso de la autocorrelación nomralizada, si la autocorrelación es cercana a 0, es una trama sorda,.Si el máximo de la autocorrelación és mayor que su umbral, nos indica que tiene perodicidad, y por lo tanto es sonora. Y por último los cruces por cero, si el numero de la zcr es relativamente bajo, es más probable que sea sonoro, ya que los sonidos sonoros tiene una señal más regular y por lo tanto no cruza por el cero.
+
 Así que aplicando estos umbrales ha quedado de la siguiente forma:
 
 ![image](https://user-images.githubusercontent.com/127047656/236697196-9a1a23d6-c8b9-4e1a-afa7-da5dfeec67f7.png)
