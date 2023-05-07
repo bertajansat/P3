@@ -95,6 +95,18 @@ Para poder llegar a los resultados adjuntados a continuación hemos decidido imp
 
 Como podemos observar obtenemos una total score de 90.92%. Esto lo hemos conseguido variando los parámetros y dejándolos de la forma siguiente: u_pot = -46 dB, u_r1 = 0.94 y u_rmax = 0.39. Además, también hemos implementado center clipping como método de preprocesado y un filtro de mediana de 3 elementos como método de postprocesado.   
 
+Buscando formas de mejorar la puntuación total hemos implementado la función unvoiced de una forma distinta además de añadirle la tasa de cruces por cero. Ha quedado de la siguiente forma:
+
+![image](https://user-images.githubusercontent.com/127047656/236697196-9a1a23d6-c8b9-4e1a-afa7-da5dfeec67f7.png)
+
+![image](https://user-images.githubusercontent.com/127047656/236697228-5876e4fb-569d-4e5f-95f4-2d9b136933d6.png)
+
+Con estas condiciones y valores hemos conseguido mejorar el score, obteniendo los siguientes resultados:
+
+![image](https://user-images.githubusercontent.com/127047656/236697289-565ad405-993e-4d0c-accb-89c38aef5e7b.png)
+
+Hay una mejora raonable respecto a los últimos resultados que habíamos obtenido por lo cual nos quedamos con esta versión como la versión final. En esta siguen estando implementados los métodos de pre y post procesado tal y como en el anterior caso.
+
 Ejercicios de ampliación
 ------------------------
 
