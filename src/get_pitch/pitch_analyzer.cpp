@@ -10,9 +10,18 @@ using namespace std;
 namespace upc {
   void PitchAnalyzer::autocorrelation(const vector<float> &x, vector<float> &r) const {
 
+
     for (unsigned int l = 0; l < r.size(); ++l) {
   		/// \TODO Compute the autocorrelation r[l]
+      /// \DONE AutocorrelaciÃ³n calculada
+      for (unsigned int n = 0; n < x.size() - l; ++n){
+        r[l] += x[n]*x[n+l];
+      }
+    r[l] = r[l] / x.size();
     }
+      /// - Inicializamos la autocorrelaciÃ³n a 0
+      /// - Acumulamos los productos cruzados \f$\sum_{n=0}^{N-l} x[n]x[n+l]\f$
+      /// - Dividimos por el numero de muestras
 
     if (r[0] == 0.0F) //to avoid log() and divide zero 
       r[0] = 1e-10; 
@@ -27,7 +36,11 @@ namespace upc {
     switch (win_type) {
     case HAMMING:
       /// \TODO Implement the Hamming window
-      break;
+      for (unsigned int i = 0; i < frameLen ; i++){
+        window[i] = 0.54 - 0.46*cos((2*M_PI*i/(frameLen-1)));
+      }
+      break; /// \DONE Ventana de Hamming implementada
+
     case RECT:
     default:
       window.assign(frameLen, 1);
@@ -46,11 +59,51 @@ namespace upc {
       npitch_max = frameLen/2;
   }
 
-  bool PitchAnalyzer::unvoiced(float pot, float r1norm, float rmaxnorm) const {
+  bool PitchAnalyzer::unvoiced(float pot, float r1norm, float rmaxnorm, float zcr) const {
     /// \TODO Implement a rule to decide whether the sound is voiced or not.
     /// * You can use the standard features (pot, r1norm, rmaxnorm),
     ///   or compute and use other ones.
-    return true;
+       if(rmaxnorm < this->u_rmax || r1norm < 0.1 || zcr > this->u_zcr){
+      return true;
+    }
+    if(pot > this->u_pot){
+      if(rmaxnorm < 0.392 && r1norm > 0.9){
+        return true;
+      } else if(rmaxnorm < 0.391 && r1norm > this->u_r1){
+        return true;
+      } else if(rmaxnorm > 0.391 || r1norm > 0.9){
+        return false;
+      } else{
+        return true;
+      }
+    }else{
+      if(rmaxnorm > 0.5){
+        return false;
+      }else{
+        return true;
+      }
+    }
+  }
+    /// Se puede saber su sonoridad por la: 
+    ///    -Energia de la seÃ±al
+    ///    -Coeficiente de correlaccion R(1)/R(0) > Th1
+    ///    -Coeficiente de correlaccion R(lag)/R(0) > Th2
+    ///    -ZCR
+
+    float PitchAnalyzer::compute_zcr(vector<float> & x, unsigned int N, unsigned int fm) const {
+	  unsigned int i = 0;
+	  float zcr = 0;
+	  for(i=1; i<N; i++){
+
+		  if((x[i]*x[i-1]) < 0){
+			  zcr = zcr + 1;
+		  }
+
+	  }
+	  zcr = ((float)1 / (N-1)) * zcr;
+
+	  zcr = fm / ((float)2) * zcr;
+	  return zcr;
   }
 
   float PitchAnalyzer::compute_pitch(vector<float> & x) const {
@@ -67,8 +120,7 @@ namespace upc {
     autocorrelation(x, r);
 
     vector<float>::const_iterator iR = r.begin(), iRMax = iR;
-
-    /// \TODO 
+        /// \TODO 
 	/// Find the lag of the maximum value of the autocorrelation away from the origin.<br>
 	/// Choices to set the minimum value of the lag are:
 	///    - The first negative value of the autocorrelation.
@@ -76,21 +128,34 @@ namespace upc {
     ///	   .
 	/// In either case, the lag should not exceed that of the minimum value of the pitch.
 
+  for (iR = iRMax = r.begin() + npitch_min; iR <= r.begin() + npitch_max; iR++){
+    if (*iR>*iRMax){
+      iRMax = iR;
+    }
+  }
     unsigned int lag = iRMax - r.begin();
 
+    /// \DONE Lag del valor mÃ¡ximo de la autocorrelaciÃ³n lejos del origen encontrado
+
     float pot = 10 * log10(r[0]);
+    float zcr = compute_zcr(x, frameLen, samplingFreq);
 
     //You can print these (and other) features, look at them using wavesurfer
     //Based on that, implement a rule for unvoiced
     //change to #if 1 and compile
 #if 0
     if (r[0] > 0.0F)
-      cout << pot << '\t' << r[1]/r[0] << '\t' << r[lag]/r[0] << endl;
+      cout << pot << '\t' << r[1]/r[0] << '\t' << r[lag]/r[0] << '\t' << endl; 
+    
 #endif
     
-    if (unvoiced(pot, r[1]/r[0], r[lag]/r[0]))
+    if (unvoiced(pot, r[1]/r[0], r[lag]/r[0], zcr)){
+      //cout << "0" << endl;
       return 0;
-    else
-      return (float) samplingFreq/(float) lag;
+      }
+    else{
+      //cout << (float) samplingFreq/(float) lag << endl;
+      return (float) samplingFreq/(float) lag; // este seria el valor del pitch!!!!! 
+      }
   }
 }

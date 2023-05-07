@@ -30,6 +30,10 @@ namespace upc {
       samplingFreq, ///< sampling rate (in samples per second). Has to be set in the constructor call
       npitch_min, ///< minimum value of pitch period, in samples
       npitch_max; ///< maximum value of pitch period, in samples
+      float u_pot;
+      float u_r1;
+      float u_rmax;
+      float u_zcr;
  
 	///
 	/// Computes correlation from lag=0 to r.size()
@@ -40,11 +44,13 @@ namespace upc {
 	/// Returns the pitch (in Hz) of input frame x
 	///
     float compute_pitch(std::vector<float> & x) const;
-	
+
+  /// Returns zcr: 
+    float compute_zcr(std::vector<float> & x, unsigned int N, unsigned int fm) const;
 	///
 	/// Returns true is the frame is unvoiced
 	///
-    bool unvoiced(float pot, float r1norm, float rmaxnorm) const;
+    bool unvoiced(float pot, float r1norm, float rmaxnorm, float zcr) const;
 
 
   public:
@@ -52,13 +58,21 @@ namespace upc {
 					unsigned int sFreq,			///< Sampling rate in Hertzs
 					Window w=PitchAnalyzer::HAMMING,	///< Window type
 					float min_F0 = MIN_F0,		///< Pitch range should be restricted to be above this value
-					float max_F0 = MAX_F0		///< Pitch range should be restricted to be below this value
-				 )
+					float max_F0 = MAX_F0,		///< Pitch range should be restricted to be below this value
+          float u_pot = -48, // antes 46 
+          float u_r1 = 0.95, // antes 0.93
+          float u_rmax = 0.2, // antes 0.39
+          float u_zcr=2300
+  			 )
 	{
       frameLen = fLen;
       samplingFreq = sFreq;
       set_f0_range(min_F0, max_F0);
       set_window(w);
+      this->u_pot = u_pot;
+      this->u_r1 = u_r1;
+      this->u_rmax = u_rmax;
+      this->u_zcr = u_zcr;
     }
 
 	///
