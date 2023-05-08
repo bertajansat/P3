@@ -24,6 +24,13 @@ Ejercicios básicos
 Para la generación de las gráficas hemos decidido usar Matlab. Gracias a esto podemos observar con más claridad el segundo pico de la autocorrelación, es decir el correspondiente al pitch. 
 ![image](https://user-images.githubusercontent.com/127047656/235480453-d2bbc234-a37a-4f22-89fc-994f295c6ad1.png)
 
+Para ver con más claridad el periodo de la señal y donde está situado el pico de la autocorrelación seleccionamos los puntos que nos interesan:
+
+![image](https://user-images.githubusercontent.com/127047656/236748240-92e043b9-4d44-499b-af89-ddcac95ab62e.png)
+
+Tal y como se puede ver, el periodo es de 7,37 ms, lo cual nos da una f0 = 136 Hz. Obtenemos el mismo valor viendo el pico de la autocorrelación y pasándolo a frecuencia: fm/r[lag] = 16000/117 = 136 Hz, con lo cual vemos que con ambos métodos podemos obtener la frecuencia fundamental.  
+
+
 Estos resultados los hemos logrado a través del siguiente código: 
 ![image](https://user-images.githubusercontent.com/127047656/235481023-2b5fe2f5-69e1-4522-9dd2-f3aacd411314.png)
 Como se puede observar, hemos tenido que coger a partir de la mitad de las muestras del resultado de xcorr(audio) ya que esta función nos daba los coeficientes de la autocorrelación entre -N+1 y N-1 y el máximo está ubicado en N. Para observar mejor la correlación tomamos el vector de forma que el máximo principal esté en 0. 
